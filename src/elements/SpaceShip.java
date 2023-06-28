@@ -14,7 +14,7 @@ import lib.Point;
 public class SpaceShip extends Entity {
 	private int ultiCount; // so um ti 
 	public SpaceShip(String linkImage, float width, float heigh) {
-		super(linkImage, width, heigh,100);
+		super(linkImage, width, heigh,100000);
 	}
 	public SpaceShip() {
 		this("/resourses/gamekit/spritesheets/ship/SpaceShip.png", 90, 90);

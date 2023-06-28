@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="GamePane" prefHeight="808.0" prefWidth="1361.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.GamePlayController">
+   <children>
+      <ImageView fx:id="background2" fitHeight="838.0" fitWidth="1413.0" layoutX="2.0" layoutY="-838.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resourses/background/Space%20Background3%20(1).png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="background1" fitHeight="838.0" fitWidth="1413.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resourses/background/Space%20Background3%20(1).png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="146.0" fitWidth="417.0" layoutX="349.0" layoutY="13.0" opacity="0.9" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resourses/background/clouds-transparent.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="208.0" fitWidth="347.0" layoutX="2.0" layoutY="27.0" opacity="0.9" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resourses/background/clouds-transparent.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="124.0" fitWidth="351.0" layoutX="1089.0" layoutY="20.0" opacity="0.9" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resourses/background/clouds-transparent.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="167.0" fitWidth="377.0" layoutX="712.0" layoutY="10.0" opacity="0.9" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resourses/background/clouds-transparent.png" />
+         </image>
+      </ImageView>
+      <ProgressBar fx:id="hpBar" layoutX="152.0" layoutY="86.0" prefWidth="200.0" progress="0.0" />
+      <Text fx:id="countBullet" fill="WHITE" layoutX="152.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bullets: " wrappingWidth="282.20001220703125">
+         <font>
+            <Font name="Impact" size="36.0" />
+         </font>
+      </Text>
+      <Text fx:id="score" fill="#fff8f8" layoutX="153.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score" wrappingWidth="249.3627471923828">
+         <font>
+            <Font name="Impact" size="30.0" />
+         </font>
+      </Text>
+      <ProgressBar fx:id="ultiBar" layoutX="152.0" layoutY="125.0" prefHeight="18.0" prefWidth="126.0" progress="0.0" />
+   </children>
+</AnchorPane>

@@ -59,20 +59,21 @@ public class GamePlayManager {
 				controller.displayInfor();
 				controller.createMoveBackground();
 				int dangChoi = controller.getSpaceShip().getHP();
-				if(dangChoi == 0) {
+				if(dangChoi <= 0) {
+					controller.getSpaceShip().setHP(0);
 					controller.getSpaceShip().no();
+					
 					this.stop();
 					PauseTransition pause = new PauseTransition(Duration.seconds(0.9));
 					pause.setOnFinished(x->{
 						try {
 							event.gameOver();
+							gameStage.close();
 							
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-						gameStage.hide();
-						
 						
 					});			
 					pause.play();

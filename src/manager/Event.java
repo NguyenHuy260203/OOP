@@ -58,7 +58,7 @@ public class Event {
 				increase(10);
 				themThuyenTim();
 			}
-			if(controller.countBackground == 1 && !hasBoss) {
+			if(controller.countBackground == 3 && !hasBoss) {
 				BOSS();
 				hasBoss = true;
 			}
@@ -68,7 +68,7 @@ public class Event {
 			deltaTime ++;
 			if (deltaTime%4 == 2) bonusThemDan();
 			if (deltaTime%5 == 3) themHP();
-			if (deltaTime%5 == 4) upgradeShoot();
+			if (deltaTime%10 == 4) upgradeShoot();
 			if (deltaTime%7 == 3) addUltimate();
 //			lastTime = now;
 		}
@@ -104,8 +104,7 @@ public class Event {
 			
 		}
 		if (isFKeyPressed && spaceShip.getCachBan() > 1 && spaceShip.canChange) {
-		
-			spaceShip.setCachBan(spaceShip.getCachBan() - 1);
+			spaceShip.setHP(spaceShip.getHP()+2 > 15 ? 15 : spaceShip.getHP()+2);
 			spaceShip.canChange = false;
 			PauseTransition changeDelay = new PauseTransition(Duration.seconds(1.0));
 			changeDelay.setOnFinished(event->{

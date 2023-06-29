@@ -14,19 +14,19 @@ import lib.Point;
 public class SpaceShip extends Entity {
 	private int ultiCount; // so um ti 
 	public SpaceShip(String linkImage, float width, float heigh) {
-		super(linkImage, width, heigh,100000);
+		super(linkImage, width, heigh,15);
 	}
 	public SpaceShip() {
 		this("/resourses/gamekit/spritesheets/ship/SpaceShip.png", 90, 90);
 		setPosition(new Point(650, 600));
 		bulletStore = 1000;
-		ultiCount = 2; // khoi tao bang 1
+		ultiCount = 7; // khoi tao bang 1
 	}
 	private int score = 0;
 	private static final double STEP = 5;
 	private double shipAngle;
 	private int bulletStore;
-	private int cachBan = 4;// cách bắn
+	private int cachBan = 1;// cách bắn
 	public boolean canShoot = true;
 	public boolean canDiChuyen = true;
 	public boolean canUlti = true;
@@ -145,7 +145,7 @@ public class SpaceShip extends Entity {
 		
 	}
 	public void no() {//nổ
-		
+		this.isBOOM = true;
 		String[] FRAME_PATH = {
 				"/resourses/gamekit/spritesheets/explosion1.png",
 				"/resourses/gamekit/spritesheets/explosion2.png",
@@ -165,9 +165,8 @@ public class SpaceShip extends Entity {
 				// TODO Auto-generated method stub
 				if(currentFrame == 8) {
 					this.stop();
-					
 				}
-				if(now - lastTime>=1e9/10) {
+				if(now - lastTime>=1e9/10 && currentFrame < 8) {
 					Image image = new Image(FRAME_PATH[currentFrame]);
 					getImageView().setImage(image);
 					currentFrame++;

@@ -40,6 +40,7 @@ public class BulletHero extends Bullet{
 						e.setHP(e.getHP()-1);
 						if(e.getHP()!=0) e.dau();
 						if(e.getHP()<=0) {
+							e.setHP(0);
 							e.no();
 							E.remove(e);
 							e = null;

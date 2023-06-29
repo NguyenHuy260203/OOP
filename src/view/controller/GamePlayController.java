@@ -71,8 +71,8 @@ public class GamePlayController {
 	}
 	public int countBackground = 1;
 	public void createMoveBackground() {
-		background1.setLayoutY(background1.getLayoutY()+0.5);
-		background2.setLayoutY(background2.getLayoutY()+0.5);
+		background1.setLayoutY(background1.getLayoutY()+1.5);
+		background2.setLayoutY(background2.getLayoutY()+1.5);
 		if (background1.getLayoutY()> 808) {
 			background1.setLayoutY(-808);
 		}
@@ -95,8 +95,8 @@ public class GamePlayController {
 
 	public void displayInfor() {
 		countBullet.setText("Bullets: "+String.valueOf(spaceShip.getBulletStore()));
-		hpBar.setProgress(spaceShip.getHP()/10.0);
-		ultiBar.setProgress(spaceShip.getUltiCount()/3.0);
+		hpBar.setProgress(spaceShip.getHP()/15.0);
+		ultiBar.setProgress(spaceShip.getUltiCount()/7.0);
 		score.setText("Score: "+ spaceShip.getScore());
 	}
 

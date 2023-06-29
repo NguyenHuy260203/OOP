@@ -60,10 +60,11 @@ public class UltimateBullet extends Bullet {
 						delay.play();
 						
 					}
-					for(int i = 0;i<E.size();i++) {
-						Entity e = E.get(i);
+					if(currentFrame == 3) {
+						for(int i = 0;i<E.size();i++) {
+							Entity e = E.get(i);
 						
-						if(hasVaCham(e)) {
+							if(hasVaCham(e)) {
 								e.setHP((e.getHP()-3)>0?(e.getHP()-3):0);
 								if(e.getHP()!=0)e.dau();
 								if(e.getHP()<=0) {
@@ -74,14 +75,14 @@ public class UltimateBullet extends Bullet {
 									else spaceShip.setScore(spaceShip.getScore()+2);
 									
 								}
+							}
 						}
 					}
-					
 					if(currentFrame == 12 ) {
 						this.stop();
 						
 					}
-					if(now - lastTime>=1e9/10) {
+					if(now - lastTime>=1e9/10 && currentFrame < 12) {
 						Image image = new Image(FRAME_PATH[currentFrame]);
 						getImageView().setImage(image);
 						currentFrame++;

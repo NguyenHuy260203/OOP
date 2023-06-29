@@ -75,8 +75,11 @@ public class Event {
 				controller.setLevel("Level 2");
 				themThuyenTim();
 			}
-			
-			
+			//level3
+			if(timer.getT()==70) {
+				thuyenTimChayNgang();
+				thuyenHongThangTap();
+			}
 
 			if(controller.countBackground == 1 && !hasBoss) {
 				BOSS();
@@ -86,7 +89,10 @@ public class Event {
 			if(timer.getT()>=40)nemDaDauTay();else if(timer.getT()%5==0)nemDaDauTay();
 			
 			deltaTime ++;
-			if (deltaTime%4 == 2) bonusThemDan();
+			if (deltaTime%4 == 2) {
+				
+				bonusThemDan();
+			}
 			if (deltaTime%5 == 3) themHP();
 			if (deltaTime%5 == 4) upgradeShoot();
 			if (deltaTime%7 == 3) addUltimate();
@@ -135,7 +141,7 @@ public class Event {
 			
 		}
 	}
-
+//level 1
 	public void themThuyenHong() {
 		Point base = new Point(200,100);
 
@@ -156,6 +162,7 @@ public class Event {
 		enemyShip.move(spaceShip, gamePane);
 
 	}
+	//level 2
 	public void themThuyenTim() {
 	 Random random = new Random();
 		int x = random.nextInt(100);
@@ -170,7 +177,32 @@ public class Event {
 			thuyen.move(spaceShip, gamePane);
 		}
 	}
-	
+	//level 3
+	public void thuyenHongThangTap() {
+		Point base = new Point(100,100);
+		for(int i = 0;i<5;i++) {
+			ThuyenHong hong1 = new ThuyenHong();
+			ThuyenHong hong2 = new ThuyenHong();
+			E.add(hong2);
+			E.add(hong1);
+			hong1.setEndPosition(new Point(base.getX(),base.getY()+i*100));
+			hong2.setEndPosition(new Point(base.getX()+1200,base.getY()+i*100));
+			hong1.move(spaceShip, gamePane);
+			hong2.move(spaceShip, gamePane);
+		}
+	}
+	public void thuyenTimChayNgang() {
+		Point base = new Point(300,100);
+		for(int i = 0;i<3;i++) {
+			for(int j = 0;j<5;j++) {
+				ThuyenTim tim = new ThuyenTim();
+				E.add(tim);
+				
+				tim.setEndPosition(new Point(base.getX()+j*200,base.getY()+i*100));
+				tim.move(spaceShip, gamePane);
+			}
+		}
+	}
 	public void increase(int bullets) {
 		if (spaceShip.getBulletStore() <= 90) spaceShip.setBulletStore(spaceShip.getBulletStore()+10);
 	

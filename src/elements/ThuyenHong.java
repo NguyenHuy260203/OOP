@@ -31,6 +31,7 @@ public class ThuyenHong extends Enermy {
 	@Override
 	public void move(SpaceShip spaceShip, AnchorPane pane) {
 		// TODO Auto-generated method stub
+	
 		pane.getChildren().add(getImageView());
 		Point vector = new Point();
 		vector.setLocation(getEndPosition());

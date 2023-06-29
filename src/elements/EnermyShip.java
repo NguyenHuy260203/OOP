@@ -75,9 +75,9 @@ public class EnermyShip extends Enermy{
 		pos2.add(new Point(50, 0));
 		
 		dan1.setPosition(temp1);
-		dan1.move(spaceShip, pane, pos1);
+		//dan1.move(spaceShip, pane, pos1);
 		dan2.setPosition(temp2);
-		dan2.move(spaceShip,pane, pos2);
+		//dan2.move(spaceShip,pane, pos2);
 	}
 	
 }

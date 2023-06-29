@@ -2,15 +2,12 @@ package view.controller;
 
 import elements.SpaceShip;
 import javafx.animation.FadeTransition;
-import javafx.animation.Interpolator;
-import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
@@ -41,6 +38,8 @@ public class GamePlayController {
 	@FXML private ProgressBar ultiBar;
 	@FXML
 	private Text level;
+	@FXML
+	private VBox vBox;
 	public void setLevel(String s) {
 		level.setText(s);
 		FadeTransition fade = new FadeTransition();
@@ -85,7 +84,7 @@ public class GamePlayController {
 		hpBar.setProgress(1);
 		spaceShip = new SpaceShip();
 		GamePane.getChildren().add(spaceShip.getImageView());
-
+		vBox.toFront();
 		countBullet.setText("Bullets: "+String.valueOf(spaceShip.getBulletStore()));
 		hpBar.setProgress(spaceShip.getHP()/10.0);
 		//bullet.setText("Bullets: "+String.valueOf(spaceShip.getBulletStore()));

@@ -7,20 +7,28 @@
 }
 #hpBar{
 	-fx-pref-width:500;
-	-fx-pref-height:30;
+	-fx-pref-height:27;
+}
+#ultiBar {
+	-fx-pref-width:300;
+	-fx-pref-height:16;
 }
 #hpBar .bar {
-	-fx-background-insets: 0.1;
- 	-fx-background-radius:7;
-	-fx-background-color:green;
+	
+	-fx-background-color:#7FFF00;
 }
 
-.progress-bar {
-    -fx-background-radius:7;
-    -fx-background-color: #e5e6e4;
+.progress-bar .bar {
+	-fx-background-insets: 0.01;
+ 	-fx-background-radius:7;
+
+}
+.progress-bar .track {
+
+ 	-fx-background-radius:7;
+	 -fx-background-color: rgba(194, 227, 88, 0.2);
 }
 #ultiBar .bar{
-	-fx-background-color: blue;
-	-fx-pref-width:180;
-	-fx-pref-height:20;
+	-fx-background-color: c2e358;
+
 }

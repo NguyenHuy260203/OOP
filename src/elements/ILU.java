@@ -24,6 +24,7 @@ public class ILU extends Entity {
 	}
 	
 	public void move(SpaceShip spaceShip, AnchorPane pane) {
+		getImageView().toBack();
 		pane.getChildren().add(this.getImageView());
 		Point position = this.getPosition();
 		

@@ -16,7 +16,8 @@ public class ThuyenTim extends Enermy {
 	public final long MAX10 = (long)1e9/10;
 	private Timer time = new Timer();
 	private static String[] linkImage = {"/resourses/gamekit/spritesheets/enermy/thuyenTim1.png",
-			"/resourses/gamekit/spritesheets/enermy/thuyenTim2.png"
+			"/resourses/gamekit/spritesheets/enermy/thuyenTim2.png",
+			"/resourses/gamekit/spritesheets/enermy/thuyenTim3.png"
 			
 	};
 	
@@ -24,12 +25,14 @@ public class ThuyenTim extends Enermy {
 		super(linkImage[0],119,89,4);
 		Random random = new Random();
 		this.setPosition(new Point(random.nextDouble()*1000, 10));
+		
 		setEndPosition(new Point(random.nextDouble()*1000, random.nextDouble()*400));
 	}
 	@Override
 	public void move(SpaceShip spaceShip, AnchorPane pane) {
 		// TODO Auto-generated method stub
 		pane.getChildren().add(getImageView());
+		
 		Point vector = new Point();
 		vector.setLocation(getEndPosition());
 		vector.sub(getCenter());
@@ -60,7 +63,7 @@ public class ThuyenTim extends Enermy {
 					this.stop();
 				
 				}
-				if(currentFrame == 2)currentFrame = 0;
+				if(currentFrame == 3)currentFrame = 0;
 				if(now - lastTime>MAX10) {
 					
 					Image image = new Image(linkImage[currentFrame]);

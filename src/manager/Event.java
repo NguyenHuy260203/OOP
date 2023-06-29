@@ -61,16 +61,16 @@ public class Event {
 		if(t != timer.getT()) {
 			if(timer.getT()%10==0){
 				increase(10);
-				nemDaDauTay();
+				
 				
 			}
 			
-			if(timer.getT()%5==0) {
+			if(timer.getT()==20) {
 				level.setOpacity(1);
 				controller.setLevel("Level 1");
 				themThuyenHong();
 			}
-			if(timer.getT()==30) {
+			if(timer.getT()==50) {
 				level.setOpacity(1);
 				controller.setLevel("Level 2");
 				themThuyenTim();
@@ -83,7 +83,7 @@ public class Event {
 				hasBoss = true;
 			}
 
-			if(timer.getT()>=40)nemDaDauTay();
+			if(timer.getT()>=40)nemDaDauTay();else if(timer.getT()%5==0)nemDaDauTay();
 			
 			deltaTime ++;
 			if (deltaTime%4 == 2) bonusThemDan();
@@ -137,15 +137,15 @@ public class Event {
 	}
 
 	public void themThuyenHong() {
+		Point base = new Point(200,100);
+
 		for(int i = 0;i<4;i++) {
-			ThuyenHong hong = new ThuyenHong();
-			hong.setEndPosition(new Point(300,100*i+150));
-			E.add(hong);
-			hong.move(spaceShip, gamePane);
-			ThuyenHong hong1 = new ThuyenHong();
-			hong1.setEndPosition(new Point(1200,100*i+150));
-			E.add(hong1);
-			hong1.move(spaceShip, gamePane);
+			for(int j = 0;j<4;j++) {
+				ThuyenHong hong = new ThuyenHong();
+				E.add(hong);
+				hong.setEndPosition(new Point(base.getX()+300*j,base.getY()+120*i));
+				hong.move(spaceShip, gamePane);
+			}
 		}
 	}
 

@@ -40,13 +40,15 @@ public class GameOver extends GamePlayManager {
 		Parent root = loader.load();
 		GameOverController controller = loader.getController();
 		controller.setScore(yourScore);
-		controller.setFirst(scores.get(0)+"");
+		controller.setFirst(scores.get(0).toString());
 	
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/manager/scores.txt",false))) {
 			for(int i = 0;i<3;i++) {
 				writer.write(String.valueOf(scores.get(i)));
 				writer.newLine();
+//				writer.close();
 			}
+			writer.close();
 		}
 		Scene scene = new Scene(root, 1280, 800);
 		gameOverStage.setScene(scene);

@@ -11,7 +11,7 @@ import lib.Point;
 
 public class UltimateBullet extends Bullet {
 	public UltimateBullet(String linkImage, float width, float heigh, Point vector) {
-		super(linkImage, width, heigh, vector);
+		super(linkImage, width,heigh,0, vector);
 		// TODO Auto-generated constructor stub
 	}
 	public UltimateBullet() {

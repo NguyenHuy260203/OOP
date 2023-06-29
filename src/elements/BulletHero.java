@@ -9,12 +9,12 @@ import lib.Point;
 public class BulletHero extends Bullet{
 	Point position = new Point(30, 20);//vị trí so với ufo
 	int mode;
-	public BulletHero(String linkImage, float width, float heigh, Point vector) {
-		super(linkImage, width, heigh, vector);
+	public BulletHero(String linkImage, float width, float heigh,int hp, Point vector) {
+		super(linkImage, width, heigh,hp, vector);
 	}
 	public BulletHero(int mode) {
 		this("/resourses/gamekit/spritesheets/basicBullet.png",
-			 30, 30, new Point(0, -15));
+			 30, 30,0, new Point(0, -15));
 		this.mode = mode;
 	}
 	

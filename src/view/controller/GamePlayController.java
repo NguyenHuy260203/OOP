@@ -13,6 +13,8 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 public class GamePlayController {
+	public boolean hasBoss = false;
+	public boolean flag = false;
 	@FXML private AnchorPane GamePane;
 	public AnchorPane getGamePane() {
 		return GamePane;
@@ -67,7 +69,7 @@ public class GamePlayController {
 		//bullet.setText("Bullets: "+String.valueOf(spaceShip.getBulletStore()));
 		score.setText("Score: "+ spaceShip.getScore());
 	}
-	private int countBackground = 1;
+	public int countBackground = 1;
 	public void createMoveBackground() {
 		background1.setLayoutY(background1.getLayoutY()+0.5);
 		background2.setLayoutY(background2.getLayoutY()+0.5);
@@ -77,6 +79,7 @@ public class GamePlayController {
 		if (background2.getLayoutY() > 808) {
 			background2.setLayoutY(-808);
 		}
+//		if (countBackground == 1 && !hasBoss) flag = true;
 		if (countBackground > 5) {
 			//win// 
 		}

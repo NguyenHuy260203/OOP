@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
+import elements.EnermyShip;
 import elements.Entity;
 import elements.ExtraBullet;
 import elements.ExtraUltimate;
@@ -38,6 +39,7 @@ public class Event {
 	private ArrayList<Entity> E = new ArrayList<Entity>();
 	private int mode;
 	
+	private boolean hasBoss = false;
 	public Event(GamePlayController controller) {
 		hpBar = controller.getHpBar();
 		this.controller = controller;
@@ -60,11 +62,17 @@ public class Event {
 			
 				
 			}
+
 			if(timer.getT()%20==0)themThuyenHong();
 			if(timer.getT()%30==0)themThuyenTim();
 			
 			
-			
+
+			if(controller.countBackground == 1 && !hasBoss) {
+				BOSS();
+				hasBoss = true;
+			}
+
 			nemDaDauTay();	
 			deltaTime ++;
 			if (deltaTime%4 == 2) bonusThemDan();
@@ -116,6 +124,7 @@ public class Event {
 			
 		}
 	}
+
 	public void themThuyenHong() {
 		for(int i = 0;i<4;i++) {
 			ThuyenHong hong = new ThuyenHong();
@@ -127,6 +136,14 @@ public class Event {
 			E.add(hong1);
 			hong1.move(spaceShip, gamePane);
 		}
+	}
+
+	public void BOSS() {
+		System.out.println("BOSS");
+		EnermyShip enemyShip = new EnermyShip();
+		E.add(enemyShip);
+		enemyShip.move(spaceShip, gamePane);
+
 	}
 	public void themThuyenTim() {
 	 Random random = new Random();

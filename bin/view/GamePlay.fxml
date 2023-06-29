@@ -51,5 +51,10 @@
          </font>
       </Text>
       <ProgressBar fx:id="ultiBar" layoutX="152.0" layoutY="125.0" prefHeight="18.0" prefWidth="126.0" progress="0.0" />
+      <Text fx:id="level" fill="#f5b609" layoutY="370.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Level 1" textAlignment="CENTER" wrappingWidth="1394.09375">
+         <font>
+            <Font size="120.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

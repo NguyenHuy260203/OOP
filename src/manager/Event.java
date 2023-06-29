@@ -38,7 +38,7 @@ public class Event {
 	private ProgressBar hpBar;
 	private ArrayList<Entity> E = new ArrayList<Entity>();
 	private int mode;
-	
+	private Text level;
 	private boolean hasBoss = false;
 	public Event(GamePlayController controller) {
 		hpBar = controller.getHpBar();
@@ -48,6 +48,8 @@ public class Event {
 		bullet = controller.getCountBullet();
 		score = controller.getScore();
 		mode = controller.getMode();
+		level = controller.getLevel();
+
 	}
 	
 	public void timeLine(long now) {
@@ -59,12 +61,20 @@ public class Event {
 		if(t != timer.getT()) {
 			if(timer.getT()%10==0){
 				increase(10);
-			
+				nemDaDauTay();
 				
 			}
-
-			if(timer.getT()%20==0)themThuyenHong();
-			if(timer.getT()%30==0)themThuyenTim();
+			
+			if(timer.getT()%5==0) {
+				level.setOpacity(1);
+				controller.setLevel("Level 1");
+				themThuyenHong();
+			}
+			if(timer.getT()==30) {
+				level.setOpacity(1);
+				controller.setLevel("Level 2");
+				themThuyenTim();
+			}
 			
 			
 
@@ -73,7 +83,8 @@ public class Event {
 				hasBoss = true;
 			}
 
-			nemDaDauTay();	
+			if(timer.getT()>=40)nemDaDauTay();
+			
 			deltaTime ++;
 			if (deltaTime%4 == 2) bonusThemDan();
 			if (deltaTime%5 == 3) themHP();

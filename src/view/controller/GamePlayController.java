@@ -1,6 +1,8 @@
 package view.controller;
 
 import elements.SpaceShip;
+import javafx.animation.FadeTransition;
+import javafx.animation.Interpolator;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.ProgressBar;
@@ -37,6 +39,26 @@ public class GamePlayController {
 	@FXML private Text countBullet;
 	@FXML private Text score;
 	@FXML private ProgressBar ultiBar;
+	@FXML
+	private Text level;
+	public void setLevel(String s) {
+		level.setText(s);
+		FadeTransition fade = new FadeTransition();
+		fade.setNode(level);
+		fade.setDuration(Duration.seconds(2));
+		fade.setCycleCount(1);
+	
+		fade.setFromValue(1);
+		fade.setToValue(0);
+		fade.play();
+		fade.setOnFinished(event->{
+			level.setOpacity(0);
+		});
+		
+	}
+	public Text getLevel() {
+		return this.level; 
+	}
 	public ProgressBar getUltiBar() {
 		return ultiBar;
 	}
@@ -68,6 +90,9 @@ public class GamePlayController {
 		hpBar.setProgress(spaceShip.getHP()/10.0);
 		//bullet.setText("Bullets: "+String.valueOf(spaceShip.getBulletStore()));
 		score.setText("Score: "+ spaceShip.getScore());
+		level.setFont(Font.loadFont(getClass().getResourceAsStream("/view/font_dep.ttf"), 100));
+		level.setOpacity(0);
+		
 	}
 	public int countBackground = 1;
 	public void createMoveBackground() {

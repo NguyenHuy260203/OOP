@@ -21,6 +21,7 @@ public class GameOverController implements Initializable  {
 		private Text yourScore;
 		@FXML
 		private Text highScore;
+		
 		public void setFirst(String s) {
 			first.setText(s);
 		}
@@ -42,6 +43,7 @@ public class GameOverController implements Initializable  {
 		//	third.setFont(Font.loadFont(getClass().getResourceAsStream("/view/font_dep.ttf"), 30));
 			highScore.setFont(Font.loadFont(getClass().getResourceAsStream("/view/font_dep.ttf"), 40));
 			yourScore.setFont(Font.loadFont(getClass().getResourceAsStream("/view/font_dep.ttf"), 40));
+	
 			
 		}
 		

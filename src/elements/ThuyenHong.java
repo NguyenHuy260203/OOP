@@ -15,8 +15,10 @@ public class ThuyenHong extends Enermy {
 	public final long MAX6 = (long)1e9/60;
 	public final long MAX10 = (long)1e9/10;
 	private Timer time = new Timer();
-	private static String[] linkImage = {"/resourses/gamekit/spritesheets/enermy/ThuyenHong1.png",
-			"/resourses/gamekit/spritesheets/enermy/ThuyenHong2.png"
+	private static String[] linkImage = {
+			"/resourses/gamekit/spritesheets/enermy/ThuyenHong1.png",
+			"/resourses/gamekit/spritesheets/enermy/ThuyenHong2.png",
+			"/resourses/gamekit/spritesheets/enermy/ThuyenHong3.png"
 			
 	};
 	
@@ -61,7 +63,7 @@ public class ThuyenHong extends Enermy {
 					this.stop();
 				
 				}
-				if(currentFrame == 2)currentFrame = 0;
+				if(currentFrame == 3)currentFrame = 0;
 				if(now - lastTime>MAX10) {
 					
 					Image image = new Image(linkImage[currentFrame]);

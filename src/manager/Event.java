@@ -137,7 +137,7 @@ public class Event {
 			mediaPlayer.play();
 			spaceShip.canShoot = false;
 			
-			PauseTransition shootDelay = new PauseTransition(Duration.seconds(0.3)); 
+			PauseTransition shootDelay = new PauseTransition(Duration.seconds(0.15)); 
 			shootDelay.setOnFinished(event->{
 				spaceShip.canShoot = true;
 			});	

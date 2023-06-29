@@ -40,6 +40,10 @@ public class EnermyShip extends Enermy{
 				Random random = new Random();
 				position.add(vector);
 				setPosition(position);
+				if (isBOOM) this.stop();
+				if(now % (random.nextInt(5000)+1)==0 ){
+					attack(spaceShip, pane);
+				}
 				if(getCenter().distance(getEndPosition())<5) {
 					TranslateTransition ef = new TranslateTransition();
 					ef.setNode(getImageView());
@@ -48,12 +52,9 @@ public class EnermyShip extends Enermy{
 					ef.setCycleCount(TranslateTransition.INDEFINITE);
 					ef.setByX(500);
 					ef.play();
-					this.stop();
+//					this.stop();
 				}
-				if (isBOOM) this.stop();
-				if(now % (random.nextInt(5000)+1)==0 ){
-					attack(spaceShip, pane);
-				}
+				
 			}
 		};timer.start();
 		

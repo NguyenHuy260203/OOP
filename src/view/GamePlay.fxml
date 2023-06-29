@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="GamePane" prefHeight="808.0" prefWidth="1361.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.GamePlayController">
    <children>
-      <ImageView fx:id="background2" fitHeight="838.0" fitWidth="1413.0" layoutX="2.0" layoutY="-838.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="background2" fitHeight="840.0" fitWidth="1413.0" layoutY="-837.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../resourses/background/Space%20Background3%20(1).png" />
          </image>
       </ImageView>
-      <ImageView fx:id="background1" fitHeight="838.0" fitWidth="1413.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="background1" fitHeight="840.0" fitWidth="1413.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../resourses/background/Space%20Background3%20(1).png" />
          </image>
@@ -39,17 +41,36 @@
             <Image url="@../resourses/background/clouds-transparent.png" />
          </image>
       </ImageView>
-      <ProgressBar fx:id="hpBar" layoutX="152.0" layoutY="86.0" prefWidth="200.0" progress="0.0" />
-      <Text fx:id="countBullet" fill="WHITE" layoutX="152.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bullets: " wrappingWidth="282.20001220703125">
+      <Text fx:id="level" fill="#f5b609" layoutY="370.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Level 1" textAlignment="CENTER" wrappingWidth="1394.09375">
          <font>
-            <Font name="Impact" size="36.0" />
+            <Font size="120.0" />
          </font>
       </Text>
-      <Text fx:id="score" fill="#fff8f8" layoutX="153.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score" wrappingWidth="249.3627471923828">
-         <font>
-            <Font name="Impact" size="30.0" />
-         </font>
-      </Text>
-      <ProgressBar fx:id="ultiBar" layoutX="152.0" layoutY="125.0" prefHeight="18.0" prefWidth="126.0" progress="0.0" />
+      <VBox fx:id="vBox" layoutX="100.0" layoutY="90.0" prefHeight="200.0" prefWidth="700.0">
+         <children>
+            <ProgressBar fx:id="hpBar" prefWidth="200.0" progress="0.0" />
+            <ProgressBar fx:id="ultiBar" prefHeight="18.0" prefWidth="126.0" progress="0.0">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </ProgressBar>
+            <Text fx:id="countBullet" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Bullets: " wrappingWidth="282.20001220703125">
+               <font>
+                  <Font name="Impact" size="36.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Text>
+            <Text fx:id="score" fill="#fff8f8" strokeType="OUTSIDE" strokeWidth="0.0" text="Score" wrappingWidth="249.3627471923828">
+               <font>
+                  <Font name="Impact" size="30.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Text>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

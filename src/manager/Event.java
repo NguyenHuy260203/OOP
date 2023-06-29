@@ -1,6 +1,7 @@
 
 package manager;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
@@ -12,12 +13,15 @@ import elements.ExtraUltimate;
 import elements.HpMore;
 import elements.SpaceShip;
 import elements.Stone;
+import elements.ThuyenHong;
 import elements.ThuyenTim;
 import elements.UpgradeBullet;
 import javafx.animation.AnimationTimer;
 import javafx.animation.PauseTransition;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -37,9 +41,14 @@ public class Event {
 	private ProgressBar hpBar;
 	private ArrayList<Entity> E = new ArrayList<Entity>();
 	private int mode;
-	
+	private Text level;
 	private boolean hasBoss = false;
 	public Event(GamePlayController controller) {
+		String soundFile = "src/manager/chiuchiu.mp3";
+		Media media = new Media(new File(soundFile).toURI().toString());
+		mediaPlayer = new MediaPlayer(media);
+		
+		
 		hpBar = controller.getHpBar();
 		this.controller = controller;
 		gamePane = controller.getGamePane();
@@ -47,28 +56,59 @@ public class Event {
 		bullet = controller.getCountBullet();
 		score = controller.getScore();
 		mode = controller.getMode();
+		level = controller.getLevel();
+
 	}
-	
+	private boolean hasThuyenTim = false;
+	private boolean hasThuyenHong = false;
 	public void timeLine(long now) {
+	
 		long t = timer.getT();
+	
 		timer.setT(now);
-		
+	
 		if(t != timer.getT()) {
 			if(timer.getT()%10==0){
 				increase(10);
+			}
+			if(timer.getT() == 20) {
+				level.setOpacity(1);
+				controller.setLevel("Level 1");
+				themThuyenHong();
+				hasThuyenHong = true;
+			}
+			if(timer.getT() == 40) {
+				level.setOpacity(1);
+				controller.setLevel("Level 2");
+				themThuyenTim();
+				hasThuyenTim = true;
+				hasThuyenHong = false;
+			}
+
+			if(timer.getT() == 60) {
+				level.setOpacity(1);
+				controller.setLevel("BOSS");
+				BOSS();
 				themThuyenTim();
 			}
-			if(controller.countBackground == 3 && !hasBoss) {
-				BOSS();
-				hasBoss = true;
+			if(timer.getT() > 60) {
+				if(ThuyenHong.countThuyenHong == 0 && hasThuyenHong) {
+					themThuyenTim();
+					hasThuyenHong = false;
+					hasThuyenTim = true;
+				}
+				if(ThuyenTim.countThuyenTim == 0 && hasThuyenTim) {
+					themThuyenHong();
+					hasThuyenHong = true;
+					hasThuyenTim = false;
+				}
 			}
-//			System.out.println(timer.getT());
-			
-			nemDaDauTay();	
+			if(timer.getT()%2==0 && timer.getT() < 10)nemDaDauTay();
+			else nemDaDauTay();
 			deltaTime ++;
 			if (deltaTime%4 == 2) bonusThemDan();
 			if (deltaTime%5 == 3) themHP();
-			if (deltaTime%10 == 4) upgradeShoot();
+			if (deltaTime%8 == 4) upgradeShoot();
 			if (deltaTime%7 == 3) addUltimate();
 //			lastTime = now;
 		}
@@ -83,10 +123,10 @@ public class Event {
 		if ((isSpaceKeyPressed && spaceShip.canShoot && spaceShip.getBulletStore() >= spaceShip.getCachBan())) {
 			
 			spaceShip.spaceShipAttack1(gamePane,E, isSpaceKeyPressed);
-			
+			mediaPlayer.play();
 			spaceShip.canShoot = false;
 			
-			PauseTransition shootDelay = new PauseTransition(Duration.seconds(0.2)); 
+			PauseTransition shootDelay = new PauseTransition(Duration.seconds(0.3)); 
 			shootDelay.setOnFinished(event->{
 				spaceShip.canShoot = true;
 			});	
@@ -103,32 +143,49 @@ public class Event {
 			shootDelay.play();
 			
 		}
-		if (isFKeyPressed && spaceShip.getCachBan() > 1 && spaceShip.canChange) {
+		if (isFKeyPressed && spaceShip.canChange) {
 			spaceShip.setHP(spaceShip.getHP()+2 > 15 ? 15 : spaceShip.getHP()+2);
 			spaceShip.canChange = false;
+			spaceShip.setUltiCount(spaceShip.getUltiCount() - 1);
 			PauseTransition changeDelay = new PauseTransition(Duration.seconds(1.0));
 			changeDelay.setOnFinished(event->{
+				
 				spaceShip.canChange = true;
 			});
 			changeDelay.play();
 			
 		}
 	}
+
+	public void themThuyenHong() {
+		Point base = new Point(200,100);
+
+		for(int i = 0;i<4;i++) {
+			for(int j = 0;j<4;j++) {
+				ThuyenHong hong = new ThuyenHong();
+				E.add(hong);
+				hong.setEndPosition(new Point(base.getX()+300*j,base.getY()+120*i));
+				hong.move(spaceShip, gamePane);
+			}
+		}
+	}
+
 	public void BOSS() {
 		System.out.println("BOSS");
 		EnermyShip enemyShip = new EnermyShip();
 		E.add(enemyShip);
 		enemyShip.move(spaceShip, gamePane);
+
 	}
 	public void themThuyenTim() {
 	 Random random = new Random();
 		int x = random.nextInt(100);
 		for(int i = 0;i<9;i++) {
 			int offset = i-4;
-			Point temp = new Point(100,-50);
+			Point temp = new Point(150,-60);
 			temp.setLocation(temp.getX()*offset,temp.getY()*Math.abs(offset));
 			ThuyenTim thuyen = new ThuyenTim();
-			temp.add(new Point(600+x,300+x));
+			temp.add(new Point(630+x,300+x));
 			thuyen.setEndPosition(temp);
 			E.add(thuyen);
 			thuyen.move(spaceShip, gamePane);
@@ -165,8 +222,8 @@ public class Event {
 			@Override
 			public void handle(long now) {
 				// TODO Auto-generated method stub
-			if(now - lastTime>1e9/10) {
-				 if(stone.getCenter().getY()<spaceShip.getCenter().getY()-200) {
+			if(now - lastTime>1e9) {
+				 if(stone.getCenter().getY()<spaceShip.getCenter().getY()-300) {
 					Point position = spaceShip.getCenter();
 					
 					Point vector = new Point();
@@ -207,5 +264,5 @@ public class Event {
 			spaceShip.setHP(-1);
 		
 	}
-
+	private MediaPlayer mediaPlayer;
 }

@@ -1,5 +1,6 @@
 package manager;
 
+import java.io.File;
 import java.io.IOException;
 
 import javafx.animation.AnimationTimer;
@@ -8,6 +9,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import view.controller.GamePlayController;
@@ -27,6 +30,13 @@ public class GamePlayManager {
 		String css = getClass().getResource("/view/gamePlay.css").toExternalForm();
 		gameScene = new Scene(gameRoot);
 		gameScene.getStylesheets().add(css);
+		
+		String soundFile = "src/manager/gameM.mp3";
+		Media media = new Media(new File(soundFile).toURI().toString());
+		MediaPlayer mediaPlayer = new MediaPlayer(media);
+		mediaPlayer.setVolume(0.3);
+		mediaPlayer.play();
+		
 		gameScene.setOnKeyPressed(event->{
 			KeyCode keyCode = event.getCode();
 			if (keyCode == KeyCode.LEFT) isLeftKeyPressed = true;

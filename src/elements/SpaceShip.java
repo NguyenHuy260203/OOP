@@ -54,7 +54,8 @@ public class SpaceShip extends Entity {
 		return ultiCount;
 	}
 	public void setUltiCount(int ultiCount) {
-		this.ultiCount = ultiCount;
+		if(ultiCount < 0) this.ultiCount = 0;
+		else this.ultiCount = ultiCount;
 	}
 	public int getScore() {
 		return score;

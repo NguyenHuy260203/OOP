@@ -1,20 +1,18 @@
 package view.controller;
 
 import elements.SpaceShip;
-import javafx.animation.PauseTransition;
+import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 public class GamePlayController {
-	public boolean hasBoss = false;
-	public boolean flag = false;
+	
 	@FXML private AnchorPane GamePane;
 	public AnchorPane getGamePane() {
 		return GamePane;
@@ -37,6 +35,28 @@ public class GamePlayController {
 	@FXML private Text countBullet;
 	@FXML private Text score;
 	@FXML private ProgressBar ultiBar;
+	@FXML
+	private Text level;
+	@FXML
+	private VBox vBox;
+	public void setLevel(String s) {
+		level.setText(s);
+		FadeTransition fade = new FadeTransition();
+		fade.setNode(level);
+		fade.setDuration(Duration.seconds(2));
+		fade.setCycleCount(1);
+	
+		fade.setFromValue(1);
+		fade.setToValue(0);
+		fade.play();
+		fade.setOnFinished(event->{
+			level.setOpacity(0);
+		});
+		
+	}
+	public Text getLevel() {
+		return this.level; 
+	}
 	public ProgressBar getUltiBar() {
 		return ultiBar;
 	}
@@ -63,13 +83,15 @@ public class GamePlayController {
 		hpBar.setProgress(1);
 		spaceShip = new SpaceShip();
 		GamePane.getChildren().add(spaceShip.getImageView());
-
+		vBox.toFront();
 		countBullet.setText("Bullets: "+String.valueOf(spaceShip.getBulletStore()));
 		hpBar.setProgress(spaceShip.getHP()/10.0);
 		//bullet.setText("Bullets: "+String.valueOf(spaceShip.getBulletStore()));
 		score.setText("Score: "+ spaceShip.getScore());
+		level.setFont(Font.loadFont(getClass().getResourceAsStream("/view/font_dep.ttf"), 100));
+		level.setOpacity(0);
+		
 	}
-	public int countBackground = 1;
 	public void createMoveBackground() {
 		background1.setLayoutY(background1.getLayoutY()+1.5);
 		background2.setLayoutY(background2.getLayoutY()+1.5);
@@ -78,10 +100,6 @@ public class GamePlayController {
 		}
 		if (background2.getLayoutY() > 808) {
 			background2.setLayoutY(-808);
-		}
-//		if (countBackground == 1 && !hasBoss) flag = true;
-		if (countBackground > 5) {
-			//win// 
 		}
 	}
 	private SpaceShip spaceShip;

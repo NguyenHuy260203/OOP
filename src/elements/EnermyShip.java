@@ -86,8 +86,10 @@ public class EnermyShip extends Enermy{
 	public void attack(SpaceShip spaceShip, AnchorPane pane) {
 		BulletEnemy dan1 = new BulletEnemy();
 		BulletEnemy dan2 = new BulletEnemy();
+
 		Point temp1 = new Point(getCenter().getX()-150,getCenter().getY()+50);
 		Point temp2 = new Point(getCenter().getX()+150,getCenter().getY()+50);
+
 		
 		Point pos1 = new Point(-75, 0);
 		pos1.add(spaceShip.getPosition());
@@ -100,5 +102,3 @@ public class EnermyShip extends Enermy{
 		dan2.move(spaceShip,pane, pos2);
 	}
 }
-	
-	

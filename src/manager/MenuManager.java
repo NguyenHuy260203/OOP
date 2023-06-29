@@ -78,6 +78,8 @@ public class MenuManager extends MenuController {
 			helpStage.show();
 			menuStage.close();
 			// BACkBUTTON
+//			controller.stopMusic();
+//			playMusic();
 			Button backButton = (Button) helpParent.lookup("#backButton");
 			// backButton.setOnAction(EventHandler -> start(primaryStage));
 			backButton.setOnAction(event -> {
@@ -97,9 +99,7 @@ public class MenuManager extends MenuController {
 			modeStage.setScene(modeScene);
 			modeStage.show();
 			menuStage.close();
-			
 			Stage playStage = new Stage();
-			
 			Button easyButton = (Button) modeParent.lookup("#easyButton");
 			easyButton.setOnAction(event -> showPlayStage(playStage, modeStage, 0));
 			

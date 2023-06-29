@@ -15,13 +15,14 @@ public class BulletEnemy extends Bullet{
 
 	public BulletEnemy() {
 		this("/resourses/gamekit/spritesheets/jjj.png",80,80,0,new Point(0,7));
+
 	}
 	@Override
 	public void attack(SpaceShip spaceShip, AnchorPane pane) {
 			spaceShip.setHP(spaceShip.getHP()-1);
 			spaceShip.dau();
 	}
-	
+
 	public void move(SpaceShip spaceShip, AnchorPane pane, Point endPosition) {
 		pane.getChildren().add(this.getImageView());
 		Point vector = endPosition;

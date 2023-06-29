@@ -103,6 +103,7 @@ public class Entity {
 				if(currentFrame == 8) {
 					this.stop();
 					
+					
 				}
 				if(now - lastTime>=1e9/10 && currentFrame < 8) {
 					Image image = new Image(FRAME_PATH[currentFrame]);

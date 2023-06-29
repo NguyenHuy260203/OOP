@@ -12,7 +12,7 @@ import lib.Point;
 import lib.Timer;
 
 public class ThuyenTim extends Enermy {
-	public final long MAX6 = (long)1e9/60;
+	public final long MAX100 = (long)1e9/100;
 	public final long MAX10 = (long)1e9/10;
 	private Timer time = new Timer();
 	private static String[] linkImage = {"/resourses/gamekit/spritesheets/enermy/thuyenTim1.png",
@@ -20,13 +20,15 @@ public class ThuyenTim extends Enermy {
 			"/resourses/gamekit/spritesheets/enermy/thuyenTim3.png"
 			
 	};
-	
+	public static int countThuyenTim = 0;
 	public ThuyenTim() {
+		
 		super(linkImage[0],119,89,4);
 		Random random = new Random();
 		this.setPosition(new Point(random.nextDouble()*1000, 10));
 		
 		setEndPosition(new Point(random.nextDouble()*1000, random.nextDouble()*400));
+		countThuyenTim++;
 	}
 	@Override
 	public void move(SpaceShip spaceShip, AnchorPane pane) {
@@ -48,7 +50,7 @@ public class ThuyenTim extends Enermy {
 			@Override
 			public void handle(long now) {
 				
-				if(now - update>MAX6) {
+				if(now - update>MAX100) {
 					if(getCenter().distance(getEndPosition())>15) {
 						position.add(vector);
 						setPosition(position);
@@ -59,7 +61,7 @@ public class ThuyenTim extends Enermy {
 				// TODO Auto-generated method stub
 				if(isBOOM) {
 					
-					
+					countThuyenTim--;
 					this.stop();
 				
 				}
@@ -71,7 +73,7 @@ public class ThuyenTim extends Enermy {
 					currentFrame++;	
 					lastTime = now;
 				}
-				if(now % (random.nextInt(50000 )+1)==0 ){
+				if(now % (random.nextInt(20000 )+1)==0 ){
 					attack(spaceShip, pane);
 				}
 				

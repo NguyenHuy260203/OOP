@@ -55,13 +55,13 @@ public class MenuManager extends MenuController {
 			Scene creditScene = new Scene(creditParent);
 			creditStage.setScene(creditScene);
 			creditStage.show();
-			menuStage.hide();
+			menuStage.close();
 			// BACkBUTTON
 			Button backButton = (Button) creditParent.lookup("#backButton");
 			// backButton.setOnAction(EventHandler -> start(primaryStage));
 			backButton.setOnAction(event -> {
 				menuStage.show();
-				creditStage.hide();
+				creditStage.close();
 			});
 
 		} catch (IOException e) {
@@ -76,13 +76,15 @@ public class MenuManager extends MenuController {
 			Scene helpScene = new Scene(helpParent);
 			helpStage.setScene(helpScene);
 			helpStage.show();
-			menuStage.hide();
+			menuStage.close();
 			// BACkBUTTON
+//			controller.stopMusic();
+//			playMusic();
 			Button backButton = (Button) helpParent.lookup("#backButton");
 			// backButton.setOnAction(EventHandler -> start(primaryStage));
 			backButton.setOnAction(event -> {
 				menuStage.show();
-				helpStage.hide();
+				helpStage.close();
 
 			});
 		} catch (IOException e) {
@@ -96,10 +98,8 @@ public class MenuManager extends MenuController {
 			Scene modeScene = new Scene(modeParent);
 			modeStage.setScene(modeScene);
 			modeStage.show();
-			menuStage.hide();
-			
+			menuStage.close();
 			Stage playStage = new Stage();
-			
 			Button easyButton = (Button) modeParent.lookup("#easyButton");
 			easyButton.setOnAction(event -> showPlayStage(playStage, modeStage, 0));
 			
@@ -126,7 +126,7 @@ public class MenuManager extends MenuController {
 			e.printStackTrace();
 		}
 		playStage.show();
-		modeStage.hide();
+		modeStage.close();
 	}
 	
 }

@@ -16,7 +16,7 @@ public class ExtraUltimate extends ExtraPresent{
 
 	@Override
 	public void effectPresent(SpaceShip spaceShip) {
-		if (spaceShip.getUltiCount() < 3) 
+		if (spaceShip.getUltiCount() < 7) // max la 7 ultiCount
 			spaceShip.setUltiCount(spaceShip.getUltiCount()+1);
 		
 	}

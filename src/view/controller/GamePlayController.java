@@ -12,8 +12,7 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 public class GamePlayController {
-	public boolean hasBoss = false;
-	public boolean flag = false;
+	
 	@FXML private AnchorPane GamePane;
 	public AnchorPane getGamePane() {
 		return GamePane;
@@ -93,19 +92,14 @@ public class GamePlayController {
 		level.setOpacity(0);
 		
 	}
-	public int countBackground = 1;
 	public void createMoveBackground() {
-		background1.setLayoutY(background1.getLayoutY()+0.5);
-		background2.setLayoutY(background2.getLayoutY()+0.5);
-		if (background1.getLayoutY()> 808) {
-			background1.setLayoutY(-808);
+		background1.setLayoutY(background1.getLayoutY()+1.5);
+		background2.setLayoutY(background2.getLayoutY()+1.5);
+		if (background1.getLayoutY()> 837) {
+			background1.setLayoutY(-837);
 		}
-		if (background2.getLayoutY() > 808) {
-			background2.setLayoutY(-808);
-		}
-//		if (countBackground == 1 && !hasBoss) flag = true;
-		if (countBackground > 5) {
-			//win// 
+		if (background2.getLayoutY() > 837) {
+			background2.setLayoutY(-837);
 		}
 	}
 	private SpaceShip spaceShip;
@@ -119,8 +113,8 @@ public class GamePlayController {
 
 	public void displayInfor() {
 		countBullet.setText("Bullets: "+String.valueOf(spaceShip.getBulletStore()));
-		hpBar.setProgress(spaceShip.getHP()/10.0);
-		ultiBar.setProgress(spaceShip.getUltiCount()/3.0);
+		hpBar.setProgress(spaceShip.getHP()/15.0);
+		ultiBar.setProgress(spaceShip.getUltiCount()/7.0);
 		score.setText("Score: "+ spaceShip.getScore());
 	}
 

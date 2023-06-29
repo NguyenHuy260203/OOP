@@ -4,17 +4,14 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="751.0" prefWidth="1249.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.MenuController">
    <children>
       <ImageView fitHeight="816.0" fitWidth="1291.0" layoutX="-1.0" layoutY="1.0" opacity="0.9" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../resourses/background/Space%20Background3%20(1).png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="600.0" fitWidth="700.0" layoutX="64.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../resourses/image/spacerunner-removebg-preview.png" />
          </image>
       </ImageView>
       <ImageView fx:id="start" fitHeight="115.0" fitWidth="224.0" layoutX="678.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true">
@@ -41,5 +38,10 @@
       <Button fx:id="helpButton" layoutX="682.0" layoutY="253.0" mnemonicParsing="false" onMouseEntered="#onHelp" onMouseExited="#offHelp" opacity="0.0" prefHeight="99.0" prefWidth="217.0" />
       <Button fx:id="exitButton" layoutX="696.0" layoutY="546.0" mnemonicParsing="false" onMouseEntered="#onExit" onMouseExited="#offExit" opacity="0.0" prefHeight="99.0" prefWidth="217.0" />
       <Button fx:id="creditButton" layoutX="690.0" layoutY="402.0" mnemonicParsing="false" onMouseEntered="#onCredit" onMouseExited="#offCredit" opacity="0.0" prefHeight="88.0" prefWidth="207.0" />
+      <Text fx:id="banTumLum" fill="#fff821" layoutX="67.0" layoutY="273.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ban Tum Lum" textAlignment="CENTER" wrappingWidth="576.5390625">
+         <font>
+            <Font size="100.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

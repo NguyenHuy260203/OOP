@@ -1,5 +1,6 @@
 package manager;
 
+import java.io.File;
 import java.io.IOException;
 
 import javafx.animation.AnimationTimer;
@@ -8,6 +9,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import view.controller.GamePlayController;
@@ -18,6 +21,7 @@ public class GamePlayManager {
 	private boolean isSpaceKeyPressed;
 	private boolean isRKeyPressed;
 	private boolean isFKeyPressed;
+	MediaPlayer mediaPlayer;
 	public GamePlayManager() throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/GamePlay.fxml"));
 		
@@ -27,6 +31,13 @@ public class GamePlayManager {
 		String css = getClass().getResource("/view/gamePlay.css").toExternalForm();
 		gameScene = new Scene(gameRoot);
 		gameScene.getStylesheets().add(css);
+		
+		String soundFile = "src/manager/gameM.mp3";
+		Media media = new Media(new File(soundFile).toURI().toString());
+		mediaPlayer = new MediaPlayer(media);
+		mediaPlayer.setVolume(0.3);
+		mediaPlayer.play();
+		
 		gameScene.setOnKeyPressed(event->{
 			KeyCode keyCode = event.getCode();
 			if (keyCode == KeyCode.LEFT) isLeftKeyPressed = true;
@@ -55,25 +66,26 @@ public class GamePlayManager {
 			
 			@Override
 			public void handle(long now) {
-				
 				event.timeLine(now);
 				controller.displayInfor();
 				controller.createMoveBackground();
 				int dangChoi = controller.getSpaceShip().getHP();
-				if(dangChoi == 0) {
+				if(dangChoi <= 0) {
+					mediaPlayer.stop();
+					controller.getSpaceShip().setHP(0);
 					controller.getSpaceShip().no();
+					
 					this.stop();
 					PauseTransition pause = new PauseTransition(Duration.seconds(0.9));
 					pause.setOnFinished(x->{
 						try {
 							event.gameOver();
+							gameStage.close();
 							
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-						gameStage.hide();
-						
 						
 					});			
 					pause.play();

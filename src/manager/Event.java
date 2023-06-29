@@ -1,6 +1,7 @@
 
 package manager;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
@@ -19,6 +20,8 @@ import javafx.animation.AnimationTimer;
 import javafx.animation.PauseTransition;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -41,6 +44,11 @@ public class Event {
 	private Text level;
 	private boolean hasBoss = false;
 	public Event(GamePlayController controller) {
+		String soundFile = "src/manager/chiuchiu.mp3";
+		Media media = new Media(new File(soundFile).toURI().toString());
+		mediaPlayer = new MediaPlayer(media);
+		
+		
 		hpBar = controller.getHpBar();
 		this.controller = controller;
 		gamePane = controller.getGamePane();
@@ -51,7 +59,8 @@ public class Event {
 		level = controller.getLevel();
 
 	}
-	
+	private boolean hasThuyenTim = false;
+	private boolean hasThuyenHong = false;
 	public void timeLine(long now) {
 	
 		long t = timer.getT();
@@ -59,42 +68,58 @@ public class Event {
 		timer.setT(now);
 	
 		if(t != timer.getT()) {
-			if(timer.getT()%10==0){
-				increase(10);
-				
-				
+			if(timer.getT()%15==0){
+				increase(50);
 			}
-			
-			if(timer.getT()==20) {
+			if(timer.getT() == 20) {
 				level.setOpacity(1);
 				controller.setLevel("Level 1");
 				themThuyenHong();
+				hasThuyenHong = true;
 			}
-			if(timer.getT()==50) {
+			if(timer.getT() == 40) {
 				level.setOpacity(1);
 				controller.setLevel("Level 2");
 				themThuyenTim();
+				hasThuyenTim = true;
+				hasThuyenHong = false;
 			}
-			//level3
-			if(timer.getT()==70) {
+
+
+			if(timer.getT() == 100||timer.getT() == 300) {
+				level.setOpacity(1);
+				controller.setLevel("BOSS");
+				BOSS();
+				themThuyenTim();
+				
+			}
+
+			if(timer.getT()==150) {
 				thuyenTimChayNgang();
 				thuyenHongThangTap();
 			}
-
-			if(controller.countBackground == 1 && !hasBoss) {
-				BOSS();
-				hasBoss = true;
-			}
-
-			if(timer.getT()>=40)nemDaDauTay();else if(timer.getT()%5==0)nemDaDauTay();
 			
+			if(timer.getT() > 60) {
+				if(ThuyenHong.countThuyenHong == 0 && hasThuyenHong) {
+					themThuyenTim();
+					hasThuyenHong = false;
+					hasThuyenTim = true;
+				}
+				if(ThuyenTim.countThuyenTim == 0 && hasThuyenTim) {
+					themThuyenHong();
+					hasThuyenHong = true;
+					hasThuyenTim = false;
+				}
+			}
+			if(timer.getT()%2==0 && timer.getT() < 10)nemDaDauTay();
+			else nemDaDauTay();
 			deltaTime ++;
 			if (deltaTime%4 == 2) {
 				
 				bonusThemDan();
 			}
 			if (deltaTime%5 == 3) themHP();
-			if (deltaTime%5 == 4) upgradeShoot();
+			if (deltaTime%8 == 4) upgradeShoot();
 			if (deltaTime%7 == 3) addUltimate();
 //			lastTime = now;
 		}
@@ -109,10 +134,10 @@ public class Event {
 		if ((isSpaceKeyPressed && spaceShip.canShoot && spaceShip.getBulletStore() >= spaceShip.getCachBan())) {
 			
 			spaceShip.spaceShipAttack1(gamePane,E, isSpaceKeyPressed);
-			
+			mediaPlayer.play();
 			spaceShip.canShoot = false;
 			
-			PauseTransition shootDelay = new PauseTransition(Duration.seconds(0.2)); 
+			PauseTransition shootDelay = new PauseTransition(Duration.seconds(0.3)); 
 			shootDelay.setOnFinished(event->{
 				spaceShip.canShoot = true;
 			});	
@@ -129,12 +154,13 @@ public class Event {
 			shootDelay.play();
 			
 		}
-		if (isFKeyPressed && spaceShip.getCachBan() > 1 && spaceShip.canChange) {
-		
-			spaceShip.setCachBan(spaceShip.getCachBan() - 1);
+		if (isFKeyPressed && spaceShip.canChange) {
+			spaceShip.setHP(spaceShip.getHP()+2 > 15 ? 15 : spaceShip.getHP()+2);
 			spaceShip.canChange = false;
+			spaceShip.setUltiCount(spaceShip.getUltiCount() - 1);
 			PauseTransition changeDelay = new PauseTransition(Duration.seconds(1.0));
 			changeDelay.setOnFinished(event->{
+				
 				spaceShip.canChange = true;
 			});
 			changeDelay.play();
@@ -275,5 +301,5 @@ public class Event {
 			spaceShip.setHP(-1);
 		
 	}
-
+	private MediaPlayer mediaPlayer;
 }

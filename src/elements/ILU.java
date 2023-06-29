@@ -29,13 +29,14 @@ public class ILU extends Entity {
 		Point position = this.getPosition();
 		
 		 timer = new AnimationTimer() {
+//			 long lastTime = 0;
 			@Override
 			public void handle(long now) {
-			     
+			  
 				position.add(vector);
 				setPosition(position);
-				
-				if (position.getY() > 800 || position.getY() < 0) {
+			     
+				if (position.getY() > 890 || position.getY() < 0) {
 					pane.getChildren().remove(getImageView());
 					this.stop();// stop animationTimer
 				}

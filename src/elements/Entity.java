@@ -75,8 +75,10 @@ public class Entity {
 		Point vector = new Point();
 		vector.setLocation(getCenter());
 		vector.sub(entity.getCenter());
-		if(Math.abs(vector.getX())<=this.domainX+entity.domainX&&Math.abs(vector.getY())<=this.domainY+entity.domainY)return true;
-
+		if(Math.abs(vector.getX())<=this.domainX+entity.domainX&&Math.abs(vector.getY())<=this.domainY+entity.domainY) {
+			if(!entity.isBOOM) return true;
+		}
+		
 		return false;
 	}
 	public void no() {//nổ
@@ -103,7 +105,7 @@ public class Entity {
 					
 					
 				}
-				if(now - lastTime>=1e9/10) {
+				if(now - lastTime>=1e9/10 && currentFrame < 8) {
 					Image image = new Image(FRAME_PATH[currentFrame]);
 					getImageView().setImage(image);
 					currentFrame++;

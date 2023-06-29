@@ -20,7 +20,7 @@ public class Timer {
 		
 		if (Delta != preDelta) t++;
 		timeNow = now;
-		t = (long) (now/1e9);
+	
 		
 	}
 	

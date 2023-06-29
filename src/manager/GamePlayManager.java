@@ -55,6 +55,7 @@ public class GamePlayManager {
 			
 			@Override
 			public void handle(long now) {
+				
 				event.timeLine(now);
 				controller.displayInfor();
 				controller.createMoveBackground();

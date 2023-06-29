@@ -26,7 +26,7 @@ public class SpaceShip extends Entity {
 	private static final double STEP = 5;
 	private double shipAngle;
 	private int bulletStore;
-	private int cachBan = 4;// cách bắn
+	private int cachBan = 1;// cách bắn
 	public boolean canShoot = true;
 	public boolean canDiChuyen = true;
 	public boolean canUlti = true;

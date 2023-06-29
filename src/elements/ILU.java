@@ -34,7 +34,7 @@ public class ILU extends Entity {
 				position.add(vector);
 				setPosition(position);
 				
-				if (position.getY() > 890 || position.getY() < 0) {
+				if (position.getY() > 800 || position.getY() < 0) {
 					pane.getChildren().remove(getImageView());
 					this.stop();// stop animationTimer
 				}

@@ -11,20 +11,20 @@ import javafx.util.Duration;
 import lib.Point;
 import lib.Timer;
 
-public class ThuyenTim extends Enermy {
+public class ThuyenHong extends Enermy {
 	public final long MAX6 = (long)1e9/60;
 	public final long MAX10 = (long)1e9/10;
 	private Timer time = new Timer();
-	private static String[] linkImage = {"/resourses/gamekit/spritesheets/enermy/thuyenTim1.png",
-			"/resourses/gamekit/spritesheets/enermy/thuyenTim2.png"
+	private static String[] linkImage = {"/resourses/gamekit/spritesheets/enermy/ThuyenHong1.png",
+			"/resourses/gamekit/spritesheets/enermy/ThuyenHong2.png"
 			
 	};
 	
-	public ThuyenTim() {
-		super(linkImage[0],119,89,4);
+	public ThuyenHong() {
+		super(linkImage[0],70,40,3);
 		Random random = new Random();
 		this.setPosition(new Point(random.nextDouble()*1000, 10));
-		setEndPosition(new Point(random.nextDouble()*1000, random.nextDouble()*400));
+	//	setEndPosition(new Point(random.nextDouble()*1000, random.nextDouble()*400));
 	}
 	@Override
 	public void move(SpaceShip spaceShip, AnchorPane pane) {
@@ -39,8 +39,8 @@ public class ThuyenTim extends Enermy {
 		AnimationTimer timer = new AnimationTimer() {
 			int currentFrame = 0;
 			long lastTime = 0;
-			long update = 0;
 			long temp = 0;
+			long update = 0;
 			Random random = new Random();
 			@Override
 			public void handle(long now) {
@@ -53,9 +53,10 @@ public class ThuyenTim extends Enermy {
 					}
 					
 				}
+				
 				// TODO Auto-generated method stub
 				if(isBOOM) {
-					
+				
 					
 					this.stop();
 				
@@ -82,22 +83,22 @@ public class ThuyenTim extends Enermy {
 	@Override
 	public void attack(SpaceShip spaceShip, AnchorPane pane) {
 		// TODO Auto-generated method stub
-		DanTim dan = new DanTim();
-		Point temp = new Point(getCenter().getX()-10,getCenter().getY()+10);
+		DanHong dan = new DanHong();
+		Point temp = new Point(getCenter().getX()-15,getCenter().getY()+10);
 		dan.setPosition(temp);
 		dan.move(spaceShip, pane);
 	}
 
 }
-class DanTim extends ILU{
+class DanHong extends ILU{
 
-	public DanTim(String linkImage, float width, float heigh, int HP, Point vector) {
+	public DanHong(String linkImage, float width, float heigh, int HP, Point vector) {
 		super(linkImage, width, heigh, HP, vector);
 		// TODO Auto-generated constructor stub
 	}
 
-	public DanTim() {
-		this("/resourses/gamekit/spritesheets/enermy/danTim.png",40,40,1,new Point(0,7));
+	public DanHong() {
+		this("/resourses/gamekit/spritesheets/enermy/DanHong.png",30,30,1,new Point(0,7));
 	}
 	@Override
 	public void attack(SpaceShip spaceShip, AnchorPane pane) {

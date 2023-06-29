@@ -11,6 +11,7 @@ import elements.ExtraUltimate;
 import elements.HpMore;
 import elements.SpaceShip;
 import elements.Stone;
+import elements.ThuyenHong;
 import elements.ThuyenTim;
 import elements.UpgradeBullet;
 import javafx.animation.AnimationTimer;
@@ -48,14 +49,21 @@ public class Event {
 	}
 	
 	public void timeLine(long now) {
+	
 		long t = timer.getT();
+	
 		timer.setT(now);
-		
+	
 		if(t != timer.getT()) {
 			if(timer.getT()%10==0){
 				increase(10);
-				themThuyenTim();
+			
+				
 			}
+			if(timer.getT()%20==0)themThuyenHong();
+			if(timer.getT()%30==0)themThuyenTim();
+			
+			
 			
 			nemDaDauTay();	
 			deltaTime ++;
@@ -108,15 +116,27 @@ public class Event {
 			
 		}
 	}
+	public void themThuyenHong() {
+		for(int i = 0;i<4;i++) {
+			ThuyenHong hong = new ThuyenHong();
+			hong.setEndPosition(new Point(300,100*i+150));
+			E.add(hong);
+			hong.move(spaceShip, gamePane);
+			ThuyenHong hong1 = new ThuyenHong();
+			hong1.setEndPosition(new Point(1200,100*i+150));
+			E.add(hong1);
+			hong1.move(spaceShip, gamePane);
+		}
+	}
 	public void themThuyenTim() {
 	 Random random = new Random();
 		int x = random.nextInt(100);
 		for(int i = 0;i<9;i++) {
 			int offset = i-4;
-			Point temp = new Point(100,-50);
+			Point temp = new Point(150,-60);
 			temp.setLocation(temp.getX()*offset,temp.getY()*Math.abs(offset));
 			ThuyenTim thuyen = new ThuyenTim();
-			temp.add(new Point(600+x,300+x));
+			temp.add(new Point(630+x,300+x));
 			thuyen.setEndPosition(temp);
 			E.add(thuyen);
 			thuyen.move(spaceShip, gamePane);
@@ -153,8 +173,8 @@ public class Event {
 			@Override
 			public void handle(long now) {
 				// TODO Auto-generated method stub
-			if(now - lastTime>1e9/10) {
-				 if(stone.getCenter().getY()<spaceShip.getCenter().getY()-200) {
+			if(now - lastTime>1e9) {
+				 if(stone.getCenter().getY()<spaceShip.getCenter().getY()-300) {
 					Point position = spaceShip.getCenter();
 					
 					Point vector = new Point();

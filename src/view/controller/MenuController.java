@@ -21,6 +21,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class MenuController implements Initializable{
@@ -32,15 +34,18 @@ public class MenuController implements Initializable{
 	 * 
 	 * gameStage = new Stage(); new GamePlayManager(gameStage); gameStage.show(); }
 	 */
-	public void start(Stage primaryStage) {
+	public void start(Stage menuStage) {
 
-//		try {
-//			Parent root = FXMLLoader.load(getClass().getResource("/view/MenuScene.fxml"));
-//			Scene menuScene = new Scene(root);
-//			primaryStage.setScene(menuScene);
-//			primaryStage.show();
+		try {
+			Parent root = FXMLLoader.load(getClass().getResource("/view/MenuScene.fxml"));
+			Scene menuScene = new Scene(root);
+			menuStage.setScene(menuScene);
+			menuStage.show();
 
-			// EXITBUTTON
+			
+			// playButton.setOnAction(event->menuStage.hide());
+			
+////			 EXITBUTTON
 //			Button exitButton = (Button) root.lookup("#exitButton");
 //			exitButton.setOnAction(event -> Platform.exit());
 //
@@ -48,7 +53,7 @@ public class MenuController implements Initializable{
 //			Button creditButton = (Button) root.lookup("#creditButton");
 //			creditButton.setOnAction(event -> showCreditStage(primaryStage));
 //			
-//			
+////			
 //			// HELP BUTTON
 //			Button helpButton = (Button) root.lookup("#helpButton");
 //			helpButton.setOnAction(EventHandler -> showHelpStage(primaryStage));
@@ -57,10 +62,10 @@ public class MenuController implements Initializable{
 //			Button playButton = (Button) root.lookup("#startButton");
 ////			playButton.setOnAction(EventHandler -> showModeStage(primaryStage));
 //			
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//
-//		}
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		}
 	}
 	@FXML
 	public void onCredit() {
@@ -94,59 +99,106 @@ public class MenuController implements Initializable{
 	public void offExit() {
 		exit.setOpacity(1);
 	}
-//	public void showCreditStage(Stage primaryStage) {
-//		try {
-//			Parent root1 = FXMLLoader.load(getClass().getResource("CreditScene.fxml"));
-//			Scene creditScene = new Scene(root1);
-//			primaryStage.setScene(creditScene);
-//			primaryStage.show();
-//			// BACkBUTTON
-//			Button backButton = (Button) root1.lookup("#backButton");
-//			backButton.setOnAction(EventHandler -> start(primaryStage));
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//	}
-	//HELP SCENE
-//		public void showHelpStage(Stage primaryStage) {
-//			try {
-//				Parent root2 = FXMLLoader.load(getClass().getResource("HelpScene.fxml"));
-//				Scene helpScene = new Scene(root2);
-//				primaryStage.setScene(helpScene);
-//				primaryStage.show();
-//				// BACkBUTTON
-//				Button backButton = (Button) root2.lookup("#backButton");
-//				backButton.setOnAction(EventHandler -> start(primaryStage));
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
-//		}
+	public void showCreditStage(Stage creditStage, Stage menuStage) {
+		try {
+			Parent creditParent = FXMLLoader.load(getClass().getResource("/view/CreditScene.fxml"));
+			Scene creditScene = new Scene(creditParent);
+			creditStage.setScene(creditScene);
+			creditStage.show();
+			menuStage.close();
+			// BACkBUTTON
+			Button backButton = (Button) creditParent.lookup("#backButton");
+			backButton.setOnAction(event -> {
+				menuStage.show();
+				creditStage.close();
+			});
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	// HELP SCENE
+	public void showHelpStage(Stage helpStage, Stage menuStage) {
+		try {
+			Parent helpParent = FXMLLoader.load(getClass().getResource("/view/HelpScene.fxml"));
+			Scene helpScene = new Scene(helpParent);
+			helpStage.setScene(helpScene);
+			helpStage.show();
+			menuStage.close();
+			// BACkBUTTON
+//			controller.stopMusic();
+//			playMusic();
+			Button backButton = (Button) helpParent.lookup("#backButton");
+			// backButton.setOnAction(EventHandler -> start(primaryStage));
+			backButton.setOnAction(event -> {
+				menuStage.show();
+				helpStage.close();
+
+			});
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	public void showModeStage(Stage modeStage, Stage menuStage) {
+		try {
+			Parent modeParent = FXMLLoader.load(getClass().getResource("/view/ModeScene.fxml"));
+			Scene modeScene = new Scene(modeParent);
+			modeStage.setScene(modeScene);
+			modeStage.show();
+			menuStage.close();
+			Stage playStage = new Stage();
+			Button easyButton = (Button) modeParent.lookup("#easyButton");
+			easyButton.setOnAction(event -> showPlayStage(playStage, modeStage, 0));
+			
+			Button hardButton = (Button) modeParent.lookup("#hardButton");
+			hardButton.setOnAction(event -> showPlayStage(playStage, modeStage, 1));
+			
+			Button backButton = (Button) modeParent.lookup("#backButton");
+			backButton.setOnAction(event -> {
+				menuStage.show();
+				modeStage.close();
+			});
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void showPlayStage(Stage playStage, Stage modeStage, int mode) {
+		/*
+		 * public void Play(ActionEvent event) throws IOException {
+		 * 
+		 * menuStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		 * menuStage.hide();
+		 * 
+		 * gameStage = new Stage(); new GamePlayManager(gameStage); gameStage.show(); }
+		 */
+		try {
+			new GamePlayManager(playStage, mode);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		playStage.show();
+		modeStage.close();
+	}
 		@FXML private ImageView start;
 		@FXML private ImageView help;
 		@FXML private ImageView credit;
 		@FXML private ImageView exit;
 		@FXML private ImageView back;
+		@FXML private Text banTumLum = new Text();
+		
 		public void on() {
 			back.setOpacity(0.85);
 		}
 		public void off() {
 			back.setOpacity(0.85);
 		}
-//		private MediaPlayer mediaPlayer;
-//		public void playMusic() {
-//			mediaPlayer.play();
-//		}
-//		public void stopMusic() {
-//			mediaPlayer.stop();
-//		}
 		@Override
 		public void initialize(URL arg0, ResourceBundle arg1) {
 			// TODO Auto-generated method stub
-//			String soundFile = "src/manager/m.mp3";
-//			Media media = new Media(new File(soundFile).toURI().toString());
-//			mediaPlayer = new MediaPlayer(media);
-//			mediaPlayer.setVolume(0.5);
-//			playMusic();
+			banTumLum.setFont(Font.loadFont(getClass().getResourceAsStream("/view/KickhornetfreepersonalusBold-DOZ6D.otf"), 200));;
+
 		}
 		
 }

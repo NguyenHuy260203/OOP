@@ -1,5 +1,6 @@
 package elements;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -8,6 +9,8 @@ import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 import lib.Point;
 
@@ -19,7 +22,7 @@ public class SpaceShip extends Entity {
 	public SpaceShip() {
 		this("/resourses/gamekit/spritesheets/ship/SpaceShip.png", 90, 90);
 		setPosition(new Point(650, 600));
-		bulletStore = 1000;
+		bulletStore = 500;
 		ultiCount = 7; // khoi tao bang 1
 	}
 	private int score = 0;
@@ -112,6 +115,7 @@ public class SpaceShip extends Entity {
 	}
 	
 	public void spaceShipAttack1(AnchorPane pane,ArrayList<Entity> E, boolean isSpace) {
+		
 			if (isSpace) {
 				System.out.println("Shotin' them");
 				

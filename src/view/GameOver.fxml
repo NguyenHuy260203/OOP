@@ -47,7 +47,7 @@
                   <Font name="System Bold" size="35.0" />
                </font>
             </Text>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <ImageView fx:id="main" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <image>
                   <Image url="@../resourses/image/mainmenu-removebg-preview.png" />
                </image>
@@ -55,7 +55,7 @@
                   <Insets left="70.0" />
                </GridPane.margin>
             </ImageView>
-            <ImageView fitHeight="95.0" fitWidth="349.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
+            <ImageView fx:id="play" fitHeight="95.0" fitWidth="349.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
                <image>
                   <Image url="@../resourses/image/playagain-removebg-preview.png" />
                </image>
@@ -68,8 +68,8 @@
                   <Font name="System Bold" size="50.0" />
                </font>
             </Text>
-            <Button fx:id="playAgainButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" opacity="0.0" prefHeight="82.0" prefWidth="483.0" text="Button" GridPane.rowIndex="2" />
-            <Button fx:id="mainMenuButton" mnemonicParsing="false" opacity="0.0" prefHeight="98.0" prefWidth="509.0" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button fx:id="playAgainButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseEntered="#onPlay" onMouseExited="#offPlay" opacity="0.0" prefHeight="82.0" prefWidth="483.0" text="Button" GridPane.rowIndex="2" />
+            <Button fx:id="mainMenuButton" mnemonicParsing="false" onMouseEntered="#onMain" onMouseExited="#offMain" opacity="0.0" prefHeight="98.0" prefWidth="509.0" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
    </children>

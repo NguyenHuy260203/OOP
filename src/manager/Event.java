@@ -68,8 +68,8 @@ public class Event {
 		timer.setT(now);
 	
 		if(t != timer.getT()) {
-			if(timer.getT()%10==0){
-				increase(10);
+			if(timer.getT()%15==0){
+				increase(50);
 			}
 			if(timer.getT() == 20) {
 				level.setOpacity(1);
@@ -85,12 +85,20 @@ public class Event {
 				hasThuyenHong = false;
 			}
 
-			if(timer.getT() == 60) {
+
+			if(timer.getT() == 100||timer.getT() == 300) {
 				level.setOpacity(1);
 				controller.setLevel("BOSS");
 				BOSS();
 				themThuyenTim();
+				
 			}
+
+			if(timer.getT()==150) {
+				thuyenTimChayNgang();
+				thuyenHongThangTap();
+			}
+			
 			if(timer.getT() > 60) {
 				if(ThuyenHong.countThuyenHong < 3 && hasThuyenHong) {
 					themThuyenTim();
@@ -106,7 +114,10 @@ public class Event {
 			if(timer.getT()%2==0 && timer.getT() < 10)nemDaDauTay();
 			else nemDaDauTay();
 			deltaTime ++;
-			if (deltaTime%4 == 2) bonusThemDan();
+			if (deltaTime%4 == 2) {
+				
+				bonusThemDan();
+			}
 			if (deltaTime%5 == 3) themHP();
 			if (deltaTime%8 == 4) upgradeShoot();
 			if (deltaTime%7 == 3) addUltimate();
@@ -126,7 +137,7 @@ public class Event {
 			mediaPlayer.play();
 			spaceShip.canShoot = false;
 			
-			PauseTransition shootDelay = new PauseTransition(Duration.seconds(0.3)); 
+			PauseTransition shootDelay = new PauseTransition(Duration.seconds(0.15)); 
 			shootDelay.setOnFinished(event->{
 				spaceShip.canShoot = true;
 			});	
@@ -156,7 +167,7 @@ public class Event {
 			
 		}
 	}
-
+//level 1
 	public void themThuyenHong() {
 		Point base = new Point(200,100);
 
@@ -177,6 +188,7 @@ public class Event {
 		enemyShip.move(spaceShip, gamePane);
 
 	}
+	//level 2
 	public void themThuyenTim() {
 	 Random random = new Random();
 		int x = random.nextInt(100);
@@ -191,7 +203,32 @@ public class Event {
 			thuyen.move(spaceShip, gamePane);
 		}
 	}
-	
+	//level 3
+	public void thuyenHongThangTap() {
+		Point base = new Point(100,100);
+		for(int i = 0;i<5;i++) {
+			ThuyenHong hong1 = new ThuyenHong();
+			ThuyenHong hong2 = new ThuyenHong();
+			E.add(hong2);
+			E.add(hong1);
+			hong1.setEndPosition(new Point(base.getX(),base.getY()+i*100));
+			hong2.setEndPosition(new Point(base.getX()+1200,base.getY()+i*100));
+			hong1.move(spaceShip, gamePane);
+			hong2.move(spaceShip, gamePane);
+		}
+	}
+	public void thuyenTimChayNgang() {
+		Point base = new Point(300,100);
+		for(int i = 0;i<3;i++) {
+			for(int j = 0;j<5;j++) {
+				ThuyenTim tim = new ThuyenTim();
+				E.add(tim);
+				
+				tim.setEndPosition(new Point(base.getX()+j*200,base.getY()+i*100));
+				tim.move(spaceShip, gamePane);
+			}
+		}
+	}
 	public void increase(int bullets) {
 		if (spaceShip.getBulletStore() <= 90) spaceShip.setBulletStore(spaceShip.getBulletStore()+10);
 	

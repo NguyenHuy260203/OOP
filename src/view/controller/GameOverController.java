@@ -5,10 +5,29 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class GameOverController implements Initializable  {
+	@FXML private ImageView play;
+	@FXML private ImageView main;
+	@FXML
+	public void onPlay() {
+		play.setOpacity(0.85);
+	}
+	@FXML
+	public void offPlay() {
+		play.setOpacity(1);
+	}
+	@FXML
+	public void onMain() {
+		main.setOpacity(0.85);
+	}
+	@FXML
+	public void offMain() {
+		main.setOpacity(1);
+	}
 		@FXML
 		private Text first;
 		@FXML

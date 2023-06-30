@@ -21,6 +21,7 @@ public class GamePlayManager {
 	private boolean isSpaceKeyPressed;
 	private boolean isRKeyPressed;
 	private boolean isFKeyPressed;
+	MediaPlayer mediaPlayer;
 	public GamePlayManager() throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/GamePlay.fxml"));
 		
@@ -33,7 +34,7 @@ public class GamePlayManager {
 		
 		String soundFile = "src/manager/gameM.mp3";
 		Media media = new Media(new File(soundFile).toURI().toString());
-		MediaPlayer mediaPlayer = new MediaPlayer(media);
+		mediaPlayer = new MediaPlayer(media);
 		mediaPlayer.setVolume(0.3);
 		mediaPlayer.play();
 		
@@ -70,6 +71,7 @@ public class GamePlayManager {
 				controller.createMoveBackground();
 				int dangChoi = controller.getSpaceShip().getHP();
 				if(dangChoi <= 0) {
+					mediaPlayer.stop();
 					controller.getSpaceShip().setHP(0);
 					controller.getSpaceShip().no();
 					

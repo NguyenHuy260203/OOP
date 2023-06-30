@@ -73,7 +73,7 @@ public class ThuyenHong extends Enermy {
 					currentFrame++;	
 					lastTime = now;
 				}
-				if(now % (random.nextInt(3000)+1)==0 ){
+				if(now % (random.nextInt(5000)+1)==0 ){
 					attack(spaceShip, pane);
 				}
 				

@@ -14,7 +14,7 @@ import lib.Point;
 //Boss
 public class EnermyShip extends Enermy{
 	public EnermyShip(String linkImage, float width, float heigh) {
-		super(linkImage, width, heigh,100);
+		super(linkImage, width, heigh,300);
 	}
 	public EnermyShip() {
 		this("/resourses/gamekit/spritesheets/enermy/enemyOverlord.png", 360, 240);

@@ -95,11 +95,11 @@ public class GamePlayController {
 	public void createMoveBackground() {
 		background1.setLayoutY(background1.getLayoutY()+1.5);
 		background2.setLayoutY(background2.getLayoutY()+1.5);
-		if (background1.getLayoutY()> 808) {
-			background1.setLayoutY(-808);
+		if (background1.getLayoutY()> 837) {
+			background1.setLayoutY(-837);
 		}
-		if (background2.getLayoutY() > 808) {
-			background2.setLayoutY(-808);
+		if (background2.getLayoutY() > 837) {
+			background2.setLayoutY(-837);
 		}
 	}
 	private SpaceShip spaceShip;

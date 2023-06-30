@@ -73,7 +73,7 @@ public class ThuyenTim extends Enermy {
 					currentFrame++;	
 					lastTime = now;
 				}
-				if(now % (random.nextInt(10000 )+1)==0 ){
+				if(now % (random.nextInt(30000 )+1)==0 ){
 					attack(spaceShip, pane);
 				}
 				

@@ -92,12 +92,12 @@ public class Event {
 				themThuyenTim();
 			}
 			if(timer.getT() > 60) {
-				if(ThuyenHong.countThuyenHong == 0 && hasThuyenHong) {
+				if(ThuyenHong.countThuyenHong < 3 && hasThuyenHong) {
 					themThuyenTim();
 					hasThuyenHong = false;
 					hasThuyenTim = true;
 				}
-				if(ThuyenTim.countThuyenTim == 0 && hasThuyenTim) {
+				if(ThuyenTim.countThuyenTim < 3 && hasThuyenTim) {
 					themThuyenHong();
 					hasThuyenHong = true;
 					hasThuyenTim = false;
